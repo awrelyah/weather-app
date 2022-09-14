@@ -8,10 +8,11 @@ body{
     height: 100vh;
     margin:0;
     display:flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: 'Roboto', 'sans-serif';
-    color:rgb(255, 255, 255);
+    color:rgb(210, 223, 236);
 }
 
 
@@ -33,7 +34,6 @@ body{
     font-size: 30px;
     font-weight: 900;
     letter-spacing: 0.17rem;
-    color:rgb(202, 221, 230);
 }
 
 
@@ -76,9 +76,47 @@ body{
     font-size: 1.3rem;
     letter-spacing: 0.1rem;
     font-weight: 600;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+.top-main{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin:20px;
+}
+
+#temp{
+    margin-left: 20px;
+}
+
+#description{
+    text-transform: capitalize;
+}
 form:hover #search-input{
     width: 20vw;
     background-color:  rgba(255, 255, 255, 0.2);
+}
+
+
+footer{
+    padding-top: 10px;
+    font-size: 12px;
+    color: rgb(75, 71, 71);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer a {
+    text-decoration: none;
+    color:rgb(133, 136, 136);
+}
+
+footer a:hover{
+    text-decoration: underline;
 }
