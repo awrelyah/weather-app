@@ -60,7 +60,8 @@ function addToDom(obj){
     currTime.textContent = obj.timezone.currentZone;
     document.getElementById('weather-icon').src = `./icons/${obj.icon}.png`
 
-    //changeBackground(obj.isDayTime, obj.icon);
+    //const isDayTime = getCurrentHour(obj.timezone.currentHour, obj.timezone.sunriseHour, obj.timezone.sunsetHour);
+    changeBackground(obj.timezone.dayTime, obj.icon);
 }
 
 function formatTime (timezone, timestamp, sunrise, sunset){
@@ -68,13 +69,16 @@ function formatTime (timezone, timestamp, sunrise, sunset){
     const dateTime = moment.unix(timestamp).utc().add(timezone, 's');
     const sunrTime = new Date(sunrise * 1000);
     const sunsTime = new Date(sunset * 1000);
+    //FOR USA IT GIVES WRONG TIMES 
 
-    const dateTimeFormatted = moment(dateTime).format('MMMM Do YYYY, HH:mm:ss');
+    console.log(sunrTime, sunsTime);
+
+    const dateTimeFormatted = moment(dateTime).format('MMMM Do YYYY, HH:mm');
     //convert times to hours
-    const currHour = parseInt(moment(dateTime).format('HH'));
-    const sunrHour = parseInt(moment(sunrTime).format('HH'));
-    const sunsHour = parseInt(moment(sunsTime).format('HH'));
-    //const dayInfo = getCurrentHour(currHour, sunrHour, sunsHour);
+    const currHour = moment(dateTime).format('HH');
+    const sunrHour = moment(sunrTime).format('HH');
+    const sunsHour = moment(sunsTime).format('HH');
+    const dayInfo = getCurrentHour(currHour, sunrHour, sunsHour);
 
     //save everything to an object to return it all
     let currentTime = {
@@ -82,26 +86,27 @@ function formatTime (timezone, timestamp, sunrise, sunset){
         currentHour: currHour,
         sunriseHour: sunrHour,
         sunsetHour: sunsHour,
+        dayTime: dayInfo,
     }
 
     return currentTime
 }
 
-/*
-DOES NOT WORK RN
+
 //check if it is currently night time or day time, needed for background change
 function getCurrentHour(current, sunrise, sunset){
-    let isDay = 'yes';
-    if (purrent > sunrise && current < sunset){ //daytime
-        isDay = 'no';
+    let isDay = 'no';
+    if (current > sunrise && current < sunset){ //daytime
+        isDay = 'yes';
     };
 
     return isDay;
 }
 
 function changeBackground(dayTime, icon) {
+    console.log(dayTime);
     //if its night time
-    if (dayTime === 'yes'){
+    if (dayTime === 'no'){
         if (icon === '02' || icon === '03' || icon === '04' ){ //clouds
             document.body.style.backgroundImage =  `url('./img/cloudy-night.jpg')`;
         } else if (icon === '01' ){ //clear sky
@@ -132,6 +137,6 @@ function changeBackground(dayTime, icon) {
     }
 }
 
-*/
+
 //tallinn by default
 fetchData('Tallinn');
