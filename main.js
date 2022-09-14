@@ -1,6 +1,9 @@
 const city = document.getElementById('city-name');
 const temp = document.getElementById('temp');
 const descr = document.getElementById('description');
+const windspeed = document.getElementById('wind-info');
+const humidity = document.getElementById('humidity-info');
+const feelslike = document.getElementById('feelslike-info');
 
 let weather = {};
 
@@ -15,6 +18,7 @@ function fetchData(){
         weather.timezone = data.name;
         weather.wind = data.wind.speed;
         weather.humidity = data.main.humidity;
+        weather.feelslike = data.main.feels_like;
         return weather
     })
     .then(obj => {
@@ -28,6 +32,10 @@ function addToDom(obj){
     city.textContent = obj.timezone;
     temp.textContent = Math.round(obj.temperature);
     descr.textContent = obj.description;
+    windspeed.textContent = Math.round((obj.wind) * 3.6); 
+    humidity.textContent = obj.humidity;
+    feelslike.textContent = Math.round(obj.feelslike);
 }
+
 
 fetchData();
