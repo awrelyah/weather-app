@@ -19,15 +19,15 @@ function fetchData(){
     })
     .then(obj => {
         addToDom(obj);
-        city.textContent = obj.timezone;
-        temp.textContent = Math.round(obj.temperature);
-        descr.textContent = obj.description;
     })
     })
 }
 
 function addToDom(obj){
     console.log(obj);
+    city.textContent = obj.timezone;
+    temp.textContent = Math.round(obj.temperature);
+    descr.textContent = obj.description;
 }
 
 fetchData();
