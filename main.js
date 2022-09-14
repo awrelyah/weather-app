@@ -4,11 +4,26 @@ const descr = document.getElementById('description');
 const windspeed = document.getElementById('wind-info');
 const humidity = document.getElementById('humidity-info');
 const feelslike = document.getElementById('feelslike-info');
+const userInput = document.getElementById('search-input');
 
 let weather = {};
 
-function fetchData(){
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=Tallinn&APPID=aca176e6fd8adc7d0588ad959d655cdb&units=metric`, {mode:`cors`})
+//handle searching with enter
+userInput.addEventListener('keydown', function(e) {
+    if (e.code === 'Enter'){
+        e.preventDefault();
+        let userCity = userInput.value;
+        if (userCity !== ''){
+            fetchData(userCity);
+        } else {
+            alert('Enter a city');
+        }
+    }
+})
+
+//fetch data from weather api and save to weather object
+function fetchData(city){
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=aca176e6fd8adc7d0588ad959d655cdb&units=metric`, {mode:`cors`})
     .then(function(response) {
         return response.json()
     .then(data => {
@@ -19,16 +34,21 @@ function fetchData(){
         weather.wind = data.wind.speed;
         weather.humidity = data.main.humidity;
         weather.feelslike = data.main.feels_like;
+        console.log(data.message);
         return weather
     })
     .then(obj => {
         addToDom(obj);
     })
+    .catch(error => {
+        alert('City not found')
+    })
     })
 }
 
+
+//manipulate dom with api data
 function addToDom(obj){
-    console.log(obj);
     city.textContent = obj.timezone;
     temp.textContent = Math.round(obj.temperature);
     descr.textContent = obj.description;
@@ -37,5 +57,5 @@ function addToDom(obj){
     feelslike.textContent = Math.round(obj.feelslike);
 }
 
-
-fetchData();
+//tallinn by default
+fetchData('Tallinn');
