@@ -24,7 +24,7 @@ userInput.addEventListener('keydown', function(e) {
 
 //fetch data from weather api and save to weather object
 function fetchData(city){
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=aca176e6fd8adc7d0588ad959d655cdb&units=metric`, {mode:`cors`})
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=aca176e6fd8adc7d0588ad959d655cdb&units=metric`, {mode:`cors`})
     .then(function(response) {
         return response.json()
     .then(data => {
