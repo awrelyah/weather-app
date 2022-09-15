@@ -16,9 +16,11 @@ body{
 }
 
 
+
 .container{
     display:flex;
-    background-color:  rgba(0, 0, 0, 0.7);
+    flex-direction: colu;
+    background-color:  rgba(0, 0, 0, 0.5);
     width: 80vw;
     border-radius: 20px;
     height: 80vh;
@@ -172,4 +174,26 @@ footer a {
 
 footer a:hover{
     text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 100vw;
+        height: 100vh;
+        border-radius:0;
+        background-color:  rgba(0, 0, 0, 0.5);
+  }
+    footer {
+        background-color:  rgba(0, 0, 0, 0.5);
+        width:100vw;
+    }
+
+    .main-content{
+        flex-direction: column;
+    }
+
+    .weather-details-container{
+        flex-direction: row;
+        gap:0;
+    }
 }
