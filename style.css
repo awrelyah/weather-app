@@ -12,15 +12,14 @@ body{
     justify-content: center;
     align-items: center;
     font-family: 'Roboto', 'sans-serif';
-    color:rgb(210, 223, 236);
+    color:rgb(255, 255, 255);
 }
 
 
 
 .container{
     display:flex;
-    flex-direction: colu;
-    background-color:  rgba(0, 0, 0, 0.5);
+    background-color:  rgba(0, 0, 0, 0.3);
     width: 80vw;
     border-radius: 20px;
     height: 80vh;
@@ -130,6 +129,7 @@ body{
     font-weight: 400;
 }
 
+
 #temp-div{
     margin-top:20px;
     margin-bottom:20px;
@@ -140,13 +140,18 @@ body{
     flex-direction: column;
     font-size: 0.6rem;
     align-items: center;
-    gap: 2px;
+    justify-content: center;
+    gap: 3px;
+}
+
+.weather-info-title p{
+    margin:0;
 }
 
 .weather-details{
     display: flex;
     gap:3px;
-    font-weight: 600;
+    font-weight: 400;
     color:white;
 }
 .weather-icon{
@@ -176,17 +181,31 @@ footer a:hover{
     text-decoration: underline;
 }
 
+
+
 @media only screen and (max-width: 600px) {
     .container {
         width: 100vw;
         height: 100vh;
-        border-radius:0;
-        background-color:  rgba(0, 0, 0, 0.5);
+        border-radius:0
+  }
+
+  .weather{
+    padding-left:0;
+    padding-right:0;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .top-main{
+    margin:0;
+    padding:0;
+    padding-top: 20px;
   }
     footer {
-        background-color:  rgba(0, 0, 0, 0.5);
+        background-color:  rgba(0, 0, 0, 0.3);
         width:100vw;
     }
+
 
     .main-content{
         flex-direction: column;
@@ -195,5 +214,11 @@ footer a:hover{
     .weather-details-container{
         flex-direction: row;
         gap:0;
+        margin-top: 40px;
     }
+
+    .weather-title{
+        margin-left: 20px;
+    }
+
 }
