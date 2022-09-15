@@ -16,6 +16,7 @@ userInput.addEventListener('keydown', function(e) {
         let userCity = userInput.value;
         if (userCity !== ''){
             fetchData(userCity);
+            userInput.value = '';
         } else {
             alert('Enter a city');
         }
